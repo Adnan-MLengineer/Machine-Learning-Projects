@@ -1,21 +1,22 @@
-# Importing the Dependencies
+# **Importing the Dependencies**
+"""
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import sklearn.datasets as data
+import sklearn.datasets
 from sklearn.model_selection import train_test_split
 from xgboost import XGBRegressor
 from sklearn import metrics
 
-a = pd.read_csv("Real estate.csv")
+a = sklearn.datasets.fetch_california_housing()
 
 house_price_dataset = a
 
 print(house_price_dataset)
 
-house_price_dataframe = house_price_dataset
+house_price_dataframe = pd.DataFrame(house_price_dataset.data, columns = house_price_dataset.feature_names)
 
 house_price_dataframe.head()
 
@@ -29,9 +30,8 @@ house_price_dataframe.isnull().sum()
 
 house_price_dataframe.describe()
 
-# Understanding the corelation between various features in Dataset
-"""
-Add blockquote
+"""# **Understanding the corelation between various features in Dataset**
+> Add blockquote
 
 1. Positive Correlation
 2. Negative Correlation
@@ -44,7 +44,6 @@ print(correlation)
 # Constructing a heatmap to understand the correaltion
 plt.figure(figsize=(10,10), dpi=100)
 sns.heatmap(correlation, cbar=True, square=True, fmt='.1f', annot=True, annot_kws={'size':8}, cmap='Greens')
-plt.shows()
 
 X = house_price_dataframe.drop(['price'], axis=1)
 Y = house_price_dataframe['price']
